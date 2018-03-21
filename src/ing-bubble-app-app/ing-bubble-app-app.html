@@ -51,7 +51,7 @@
       app-header paper-icon-button {
         --paper-icon-button-ink-color: white;
       }
-      sample-content {
+      #app-content {
         padding-top: 50px;
       }
     </style>
@@ -70,9 +70,12 @@
 
         <app-drawer id="drawer" swipe-open></app-drawer>
 
-        <sample-content size="5"></sample-content>
+        <div id="app-content">
+            <sample-content size="5"></sample-content>
 
-        <bubble-animatie></bubble-animatie>
+            <bubble-animatie></bubble-animatie>
+        </div>
+
     </div>
 
   </template>
