@@ -60,7 +60,7 @@
                 <p>So join your Bubble now!</p>
                 <paper-checkbox class="styled">I have read and I agree to the <span class="tandc">terms & conditions</span>.</paper-checkbox>
                 <br>
-                <paper-button raised>Join my Bubble</paper-button>
+                <paper-button raised on-tap="disclaimer">Join my Bubble</paper-button>
             </div>
         </paper-card>
 
@@ -69,6 +69,10 @@
         // Your new element extends the Polymer.Element base class
         class DisclaimerKlant extends Polymer.Element {
             static get is() { return 'disclaimer-klant'; }
+
+            disclaimer() {
+                this.dispatchEvent(new CustomEvent('disclaimer', {bubbles: true, composed: true}));
+            }
         }
         //Now, register your new custom element so the browser can use it
         customElements.define(DisclaimerKlant.is, DisclaimerKlant);

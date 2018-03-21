@@ -1,5 +1,8 @@
 <!-- Load the Polymer.Element base class -->
-<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
 
 <dom-module id="start-klant">
     <!-- Defines the element's style and local DOM -->
@@ -7,18 +10,96 @@
         <style>
             :host {
                 display: block;
+            }
 
-                padding: 16px;
+
+            paper-card {
+                width: 100%;
+            }
+
+            .right {
+                float: right;
+            }
+
+            .left {
+                float: left;
+            }
+
+            .orange {
+                color: var(--default-primary-color);
+            }
+
+            .smaller {
+                font-size: 80%;
+            }
+
+            paper-button {
+                background: var(--default-primary-color);
+                color: #fff;
+                width: 100%;
+                margin: 0 auto;
             }
 
         </style>
 
-        <h1>Bubble</h1>
+        <h4 class="orange">Betaal rekenening</h4>
+        <paper-card>
+            <div class="card-content">
+                Hr. A de Vries
+                <h3 class="right">&euro; 2345,00</h3>
+                <div class="orange smaller">
+                    NL43 INGB 0180 3176 87
+                </div>
+            </div>
+        </paper-card>
+
+        <h4 class="orange">Spaar rekenening</h4>
+        <paper-card>
+            <div class="card-content">
+                Hr. A de Vries
+                <h3 class="right">&euro; 12345,12</h3>
+                <div class="orange smaller">
+                    NL43 INGB 0180 3176 87
+                </div>
+            </div>
+        </paper-card>
+
+        <template is="dom-if" if="{{!inBubble}}">
+            <p>
+                <paper-button raised on-tap="joinBubble">Join Bubble</paper-button>
+            </p>
+        </template>
+
+        <template is="dom-if" if="{{inBubble}}">
+            <h4 class="orange">Bubble rekenening</h4>
+            <paper-card>
+                <div class="card-content">
+                    Hr. A de Vries
+                    <h3 class="right"><iron-icon icon="icons:toll"></iron-icon> 1000</h3>
+                    <div class="orange smaller">
+                        UASDHYYB
+                    </div>
+                </div>
+            </paper-card>
+        </template>
     </template>
     <script>
         // Your new element extends the Polymer.Element base class
         class StartKlant extends Polymer.Element {
             static get is() { return 'start-klant'; }
+
+            static get properties() {
+                return {
+                    inBubble: {
+                        type: Boolean,
+                        value: false
+                    }
+                };
+            }
+
+            joinBubble() {
+                this.dispatchEvent(new CustomEvent('joinBubble', {bubbles: true, composed: true}));
+            }
         }
         //Now, register your new custom element so the browser can use it
         customElements.define(StartKlant.is, StartKlant);
