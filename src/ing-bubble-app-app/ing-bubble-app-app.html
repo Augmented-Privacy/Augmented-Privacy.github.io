@@ -1,4 +1,6 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../app-theme.html">
+<link rel="import" href="bubble-animatie.html">
 
 <dom-module id="ing-bubble-app-app">
   <template>
@@ -6,8 +8,12 @@
       :host {
         display: block;
       }
+
+      h1 {
+        color: var(--default-primary-color);
+      }
     </style>
-    <h2>Hello [[prop1]]!</h2>
+    <bubble-animatie></bubble-animatie>
   </template>
 
   <script>
