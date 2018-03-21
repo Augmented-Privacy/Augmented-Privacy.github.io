@@ -24,7 +24,7 @@
         color: var(--default-primary-color);
       }
 
-      body {
+      #main {
         margin: 0;
         font-family: 'Roboto', 'Noto', sans-serif;
         background-color: #eee;
@@ -56,22 +56,25 @@
       }
     </style>
 
-    <app-header condenses reveals effects="waterfall">
-      <app-toolbar>
-        <paper-icon-button icon="menu" on-tap="toggleMenu"></paper-icon-button>
-        <div main-title>ING Bubbles</div>
-        <paper-icon-button icon="delete"></paper-icon-button>
-        <paper-icon-button icon="search"></paper-icon-button>
-        <paper-icon-button icon="close"></paper-icon-button>
-        <paper-progress value="10" indeterminate bottom-item></paper-progress>
-      </app-toolbar>
-    </app-header>
+    <div id="main">
+        <app-header condenses reveals effects="waterfall">
+            <app-toolbar>
+                <paper-icon-button icon="menu" on-tap="toggleMenu"></paper-icon-button>
+                <div main-title>ING Bubbles</div>
+                <paper-icon-button icon="delete"></paper-icon-button>
+                <paper-icon-button icon="search"></paper-icon-button>
+                <paper-icon-button icon="close"></paper-icon-button>
+                <paper-progress value="10" indeterminate bottom-item></paper-progress>
+            </app-toolbar>
+        </app-header>
 
-    <app-drawer id="drawer" swipe-open></app-drawer>
+        <app-drawer id="drawer" swipe-open></app-drawer>
 
-    <sample-content size="5"></sample-content>
+        <sample-content size="5"></sample-content>
 
-    <bubble-animatie></bubble-animatie>
+        <bubble-animatie></bubble-animatie>
+    </div>
+
   </template>
 
   <script>
