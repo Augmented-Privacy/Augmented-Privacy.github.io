@@ -1,10 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 
-</body>
-</html>
+<dom-module id="advertentie-klant">
+    <!-- Defines the element's style and local DOM -->
+    <template>
+        <style>
+            :host {
+                display: block;
+
+                padding: 16px;
+            }
+
+            paper-card {
+                width: 100%;
+                padding: 0%;
+                font-family: Verdana;
+                color: var(--accent-color);
+            }
+            paper-button {
+                margin-top: 5px;
+                margin-left: 110px;
+                background-color: var(--accent-color);
+                color: white;
+                font-weight: 500;
+                font-family: Verdana;
+            }
+            .text-blue {
+                color: darkblue;
+                font-style: italic;
+            }
+
+
+        </style>
+
+        <paper-card image="src/Images/adidas.jpg">
+            <div class="card-content">
+                <div>Buy these cool Adidas Dragon shoes for 89 euros or 2500 Bubbles.</div>
+                <p class="text-blue">Your Loyalty bonus is 250 Bubbles!</p>
+                <paper-button raised>Buy Now!</paper-button>
+            </div>
+        </paper-card>
+
+    </template>
+    <script>
+        // Your new element extends the Polymer.Element base class
+        class AdvertentieKlant extends Polymer.Element {
+            static get is() { return 'advertentie-klant'; }
+        }
+        //Now, register your new custom element so the browser can use it
+        customElements.define(AdvertentieKlant.is, AdvertentieKlant);
+    </script>
+</dom-module>
