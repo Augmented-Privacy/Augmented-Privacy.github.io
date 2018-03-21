@@ -40,6 +40,27 @@
                 margin: 0 auto;
             }
 
+            paper-button.small {
+                width: 45%;
+            }
+
+            .opvallend {
+                background-color: mediumturquoise;
+                color: white;
+            }
+
+            .adv-image {
+                width: 24%;
+                float: right;
+            }
+
+            .rate-header { @apply --paper-font-headline; }
+            .rate-name { color: var(--paper-grey-600); margin: 10px 0; }
+            paper-icon-button.rate-icon {
+                --iron-icon-fill-color: white;
+                --iron-icon-stroke-color: var(--paper-grey-600);
+            }
+
         </style>
 
         <h4 class="orange">Betaal rekenening</h4>
@@ -71,16 +92,30 @@
         </template>
 
         <template is="dom-if" if="{{inBubble}}">
+            <p></p>
             <h4 class="orange">Bubble rekenening</h4>
-            <paper-card>
+            <paper-card class="opvallend">
                 <div class="card-content">
                     Hr. A de Vries
                     <h3 class="right"><iron-icon icon="icons:toll"></iron-icon> 1000</h3>
-                    <div class="orange smaller">
+                    <div class="smaller">
                         UASDHYYB
                     </div>
                 </div>
             </paper-card>
+
+            <h5 class="orange">Advertenties</h5>
+            <paper-card class="rate">
+                <div class="card-content">
+                    <img src="src/Images/adidas.jpg" class="adv-image" />
+                    <div class="rate-header">Buy these cool Adidas Dragon shoes for 89 euros or 2500 Bubbles.</div>
+                    <div class="rate-name">Adidas</div>
+                </div>
+                <div class="card-actions">
+                    <paper-button class="small" on-tap="gotoAdv1"><iron-icon icon="icons:toll"></iron-icon> 10</paper-button>
+                </div>
+            </paper-card>
+
         </template>
     </template>
     <script>
@@ -99,6 +134,10 @@
 
             joinBubble() {
                 this.dispatchEvent(new CustomEvent('joinBubble', {bubbles: true, composed: true}));
+            }
+
+            gotoAdv1() {
+                this.dispatchEvent(new CustomEvent('showAdv1', {bubbles: true, composed: true}));
             }
         }
         //Now, register your new custom element so the browser can use it

@@ -48,7 +48,7 @@
                 <div>Buy these cool Adidas Dragon shoes for 89 euros or 2500 Bubbles.</div>
                 <p class="text-blue">Your Loyalty bonus is 250 Bubbles!</p>
                 <paper-button class="paper-button-buy" raised>Buy Now!</paper-button>
-                <paper-button class="paper-button-cancel" raised>No Thanks</paper-button>
+                <paper-button class="paper-button-cancel" on-tap="advBack" raised>No Thanks</paper-button>
             </div>
         </paper-card>
 
@@ -57,6 +57,10 @@
         // Your new element extends the Polymer.Element base class
         class AdvertentieKlant extends Polymer.Element {
             static get is() { return 'advertentie-klant'; }
+
+            advBack() {
+                this.dispatchEvent(new CustomEvent('advBack', {bubbles: true, composed: true}));
+            }
         }
         //Now, register your new custom element so the browser can use it
         customElements.define(AdvertentieKlant.is, AdvertentieKlant);

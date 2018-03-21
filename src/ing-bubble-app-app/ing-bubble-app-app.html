@@ -90,15 +90,12 @@
                 <template is="dom-if" if="{{showBetalen}}">
                     <betalen-klant></betalen-klant>
                 </template>
-
-                <template is="dom-if" if="{{showBubbles}}">
-                    <bubble-animatie></bubble-animatie>
-                </template>
             </div>
-
-
         </div>
 
+        <template is="dom-if" if="{{showBubbles}}">
+            <bubble-animatie></bubble-animatie>
+        </template>
     </template>
 
     <script>
@@ -119,7 +116,7 @@
                     },
                     inBubble: {
                         type: Boolean,
-                        value: true
+                        value: false
                     },
                     showDisclaimer: {
                         type: Boolean,
@@ -149,11 +146,23 @@
             ready() {
                 this.addEventListener('joinBubble', this._joinBubble);
                 this.addEventListener('disclaimer', this._setDisclaimer);
+                this.addEventListener('showAdv1', this._showAdv1);
+                this.addEventListener('advBack', this._advBack);
                 super.ready();
             }
 
             _bubbleChange() {
                 this.showBubbles = this.inBubble;
+            }
+
+            _advBack() {
+                this.showStart = true;
+                this.showAdvertentie = false;
+            }
+
+            _showAdv1() {
+                this.showAdvertentie = true;
+                this.showStart = false;
             }
 
             _setDisclaimer() {
