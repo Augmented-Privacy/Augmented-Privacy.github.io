@@ -19,11 +19,19 @@
                 font-family: Verdana;
                 color: var(--accent-color);
             }
-            paper-button {
+            .paper-button-buy {
                 margin-top: 5px;
-                margin-left: 110px;
+                margin-left: 30px;
                 background-color: var(--accent-color);
                 color: white;
+                font-weight: 500;
+                font-family: Verdana;
+            }
+            .paper-button-cancel {
+                margin-top: 5px;
+                margin-left: 45px;
+                background-color: white;
+                color: var(--accent-color);
                 font-weight: 500;
                 font-family: Verdana;
             }
@@ -39,7 +47,8 @@
             <div class="card-content">
                 <div>Buy these cool Adidas Dragon shoes for 89 euros or 2500 Bubbles.</div>
                 <p class="text-blue">Your Loyalty bonus is 250 Bubbles!</p>
-                <paper-button raised>Buy Now!</paper-button>
+                <paper-button class="paper-button-buy" raised>Buy Now!</paper-button>
+                <paper-button class="paper-button-cancel" raised>No Thanks</paper-button>
             </div>
         </paper-card>
 
