@@ -1,0 +1,7 @@
+{
+  "name": "ing-bubbles-app",
+  "short_name": "ing-bubbles-app",
+  "description": "Bubblelicious",
+  "start_url": "/",
+  "display": "standalone"
+}
