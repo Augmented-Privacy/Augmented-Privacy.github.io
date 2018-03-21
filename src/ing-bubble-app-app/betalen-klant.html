@@ -1,10 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 
-</body>
-</html>
+<dom-module id="betalen-klant">
+    <!-- Defines the element's style and local DOM -->
+    <template>
+        <style>
+            :host {
+                display: block;
+
+                padding: 16px;
+            }
+
+            paper-card {
+                width: 100%;
+                padding: 0%;
+                font-family: Verdana;
+                color: var(--accent-color);
+            }
+            .paper-button-buy {
+                margin-top: 5px;
+                margin-left: 50px;
+                background-color: var(--accent-color);
+                color: white;
+                font-weight: 500;
+                font-family: Verdana;
+            }
+            .paper-button-cancel {
+                margin-top: 5px;
+                margin-left: 45px;
+                background-color: white;
+                color: var(--accent-color);
+                font-weight: 500;
+                font-family: Verdana;
+            }
+            .text-blue {
+                color: darkblue;
+                font-style: italic;
+            }
+
+            .adimg {
+                width: 80px;
+                height: 80px;
+                float: right;
+                margin-left: 3px;
+            }
+
+            paper-checkbox.styled {
+                font-style: italic;
+                --paper-checkbox-label-color: darkblue;
+                font-size: 14px;
+            }
+
+
+        </style>
+
+        <paper-card>
+            <div class="card-content">
+                <img class="adimg" src="src/Images/adidas.jpg">
+                <div>Your Order: Adidas Dragon shoes for 89 euros or 2500 Bubbles.</div>
+                <br>
+                <p class="text-blue">Your Loyalty bonus is 250 Bubbles!</p>
+                <br>
+                <paper-checkbox class="styled">Pay with Bubbles, your current balance is 12.000 Bubbles</paper-checkbox>
+                <br><br>
+                <paper-checkbox class="styled">Pay with Euro's, your current balance is 735,90 Euro</paper-checkbox>
+
+                <br><br>
+                <paper-button class="paper-button-buy" raised>Pay</paper-button>
+                <paper-button class="paper-button-cancel" raised>Cancel</paper-button>
+            </div>
+        </paper-card>
+
+    </template>
+    <script>
+        // Your new element extends the Polymer.Element base class
+        class BetalenKlant extends Polymer.Element {
+            static get is() { return 'betalen-klant'; }
+        }
+        //Now, register your new custom element so the browser can use it
+        customElements.define(BetalenKlant.is, BetalenKlant);
+    </script>
+</dom-module>
