@@ -13,6 +13,7 @@
 <link rel="import" href="./start-klant.html">
 <link rel="import" href="./bubble-animatie.html">
 <link rel="import" href="./disclaimer-klant.html">
+<link rel="import" href="./advertentie-klant.html">
 
 <dom-module id="ing-bubble-app-app">
     <template>
@@ -82,6 +83,9 @@
                 <template is="dom-if" if="{{showDisclaimer}}">
                     <disclaimer-klant></disclaimer-klant>
                 </template>
+                <template is="dom-if" if="{{showAdvertentie}}">
+                    <advertentie-klant></advertentie-klant>
+                </template>
 
                 <template is="dom-if" if="{{showBubbles}}">
                     <bubble-animatie></bubble-animatie>
@@ -114,6 +118,10 @@
                         value: false
                     },
                     showDisclaimer: {
+                        type: Boolean,
+                        value: false
+                    },
+                    showAdvertentie: {
                         type: Boolean,
                         value: false
                     },
