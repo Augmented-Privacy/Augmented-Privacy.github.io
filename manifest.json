@@ -1,0 +1,7 @@
+{
+  "name": "ing-bubble-app",
+  "short_name": "ing-bubble-app",
+  "description": "Awsomeniss",
+  "start_url": "/",
+  "display": "standalone"
+}

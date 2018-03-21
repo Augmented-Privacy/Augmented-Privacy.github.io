@@ -1,0 +1,32 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="ing-bubble-app-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class IngBubbleAppApp extends Polymer.Element {
+      static get is() { return 'ing-bubble-app-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'ing-bubble-app-app'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(IngBubbleAppApp.is, IngBubbleAppApp);
+  </script>
+</dom-module>
