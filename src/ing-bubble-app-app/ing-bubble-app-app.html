@@ -86,6 +86,9 @@
                 <template is="dom-if" if="{{showAdvertentie}}">
                     <advertentie-klant></advertentie-klant>
                 </template>
+                <template is="dom-if" if="{{showBetalen}}">
+                    <betalen-klant></betalen-klant>
+                </template>
 
                 <template is="dom-if" if="{{showBubbles}}">
                     <bubble-animatie></bubble-animatie>
@@ -115,13 +118,17 @@
                     },
                     inBubble: {
                         type: Boolean,
-                        value: false
+                        value: true
                     },
                     showDisclaimer: {
                         type: Boolean,
                         value: false
                     },
                     showAdvertentie: {
+                        type: Boolean,
+                        value: false
+                    },
+                    showBetalen: {
                         type: Boolean,
                         value: false
                     },
