@@ -12,6 +12,7 @@
 <link rel="import" href="../../bower_components/app-layout/demo/sample-content.html">
 <link rel="import" href="../app-theme.html">
 <link rel="import" href="bubble-animatie.html">
+<link rel="import" href="./disclaimer-klant.html">
 
 <dom-module id="ing-bubble-app-app">
   <template>
@@ -52,7 +53,7 @@
         --paper-icon-button-ink-color: white;
       }
       #app-content {
-        padding-top: 50px;
+        margin-top: 80px;
       }
     </style>
 
@@ -71,8 +72,7 @@
         <app-drawer id="drawer" swipe-open></app-drawer>
 
         <div id="app-content">
-            <sample-content size="5"></sample-content>
-
+            <disclaimer-klant></disclaimer-klant>
             <bubble-animatie></bubble-animatie>
         </div>
 
