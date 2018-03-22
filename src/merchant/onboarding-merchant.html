@@ -46,56 +46,43 @@
 
         </style>
         <form>
-        <p>
-            <paper-input label="Company Name" value="{{companyName}}"></paper-input>
-        </p>
 
-        <p>
-            <paper-input label="Address" value="{{address}}"></paper-input>
-        </p>
+            <paper-input label="Company Name" value="{{companyName}}"></paper-input><br>
 
-        <p>
-            <paper-input label="City" value="{{city}}"></paper-input>
-        </p>
+            <paper-input label="Address" value="{{address}}"></paper-input><br>
 
-            <p>
-                <paper-dropdown-menu label="Your Business">
-                    <paper-listbox slot="dropdown-content" selected="0">
-                        <paper-item></paper-item>
-                        <paper-item>SUPERMARKTEN</paper-item>
-                        <paper-item>MODEWINKELS</paper-item>
-                        <paper-item>TELECOMBEDRIJVEN</paper-item>
-                        <paper-item>GOEDE_DOELEN</paper-item>
-                        <paper-item>BABY_ARTIKELEN</paper-item>
-                        <paper-item>HORECA</paper-item>
-                        <paper-item>SPAREN</paper-item>
-                        <paper-item>LEESMATERIAAL</paper-item>
-                    </paper-listbox>
-                </paper-dropdown-menu>
-            </p>
+            <paper-input label="City" value="{{city}}"></paper-input><br>
 
-            <p>
-                <paper-input label="email" value="{{email}}">
-                    <iron-icon icon="mail" slot="prefix"></iron-icon>
-                </paper-input>
-            </p>
+            <paper-dropdown-menu label="Your Business">
+                <paper-listbox slot="dropdown-content" selected="0">
+                    <paper-item></paper-item>
+                    <paper-item>SUPERMARKTEN</paper-item>
+                    <paper-item>MODEWINKELS</paper-item>
+                    <paper-item>TELECOMBEDRIJVEN</paper-item>
+                    <paper-item>GOEDE_DOELEN</paper-item>
+                    <paper-item>BABY_ARTIKELEN</paper-item>
+                    <paper-item>HORECA</paper-item>
+                    <paper-item>SPAREN</paper-item>
+                    <paper-item>LEESMATERIAAL</paper-item>
+                </paper-listbox>
+            </paper-dropdown-menu><br>
 
 
-            <p>
+            <paper-input label="email" value="{{email}}">
+                <iron-icon icon="mail" slot="prefix"></iron-icon>
+            </paper-input><br>
+
             <paper-input label="password" value="{{password}}">
                 <iron-icon icon="lock" slot="prefix"></iron-icon>
-            </paper-input>
-        </p>
+            </paper-input><br>
 
-        <p>
             <paper-input label="repeat password" value="{{password2}}">
                 <iron-icon icon="lock" slot="prefix"></iron-icon>
-            </paper-input>
-        </p>
+            </paper-input> <br>
+            <p>
+                <paper-checkbox class="styled">I have read and I agree to the <span class="tandc">terms & conditions</span>.</paper-checkbox>
+            <p>
 
-            <paper-checkbox class="styled">I have read and I agree to the <span class="tandc">terms & conditions</span>.</paper-checkbox>
-
-        <p>
             <paper-button raised on-tap="onboarded">Join</paper-button>
         </p>
         </form>
