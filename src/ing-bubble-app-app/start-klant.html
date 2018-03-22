@@ -29,6 +29,10 @@
             .orange {
                 color: var(--default-primary-color);
             }
+            .orange-bub-acc {
+                color: var(--default-primary-color);
+                margin-top: 40px;
+            }
 
             .smaller {
                 font-size: 80%;
@@ -41,12 +45,12 @@
                 margin: 0 auto;
             }
 
-            paper-button.small {
-                width: 45%;
-            }
+            /*paper-button.small {*/
+                /*width: 45%;*/
+            /*}*/
 
             .opvallend {
-                background-color: mediumturquoise;
+                background-color: var(--default-primary-color);
                 color: white;
             }
 
@@ -61,10 +65,19 @@
                 --iron-icon-fill-color: white;
                 --iron-icon-stroke-color: var(--paper-grey-600);
             }
+            .btn-han {
+                margin-top: 25px;
+                margin-left: 0px;
+                background-color: white;
+                color: var(--accent-color);
+                font-weight: 500;
+                font-family: Verdana;
+                width: 200px;
+          }
 
         </style>
 
-        <h4 class="orange">Payment account</h4>
+        <h4 class="orange" style="margin-top: 40px">Payment accounts</h4>
         <paper-card>
             <div class="card-content">
                 Hr. A de Vries
@@ -74,11 +87,11 @@
                 </div>
             </div>
         </paper-card>
+        <p></p>
 
-        <h4 class="orange">Savings account</h4>
         <paper-card>
             <div class="card-content">
-                Hr. A de Vries
+                Hr. A de Vries e/o Mevr. Bennekers
                 <h3 class="right">&euro; 12345,12</h3>
                 <div class="orange smaller">
                     NL43 INGB 0180 3176 87
@@ -95,10 +108,10 @@
         <template is="dom-if" if="{{inBubble}}">
             <p></p>
 
-            <h4 class="orange">Bubbie account <img src="src/Images/palm.png" class="right" height="50"></h4>
+            <h4 class="orange-bub-acc">My Bubbie account <img src="src/Images/palm.png" class="right" height="50"></h4>
             <paper-card class="opvallend">
                 <div class="card-content">
-                    Hr. A de Vries
+                    <b>Hr. A de Vries</b>
                     <h3 class="right"><iron-icon icon="icons:toll"></iron-icon> {{bubbleAccount}} Bs</h3>
                     <div class="smaller">
                         UASDHYYB
@@ -106,17 +119,22 @@
                 </div>
             </paper-card>
 
-            <h5 class="orange">Ads</h5>
+            <h4 class="orange">Ads you may like</h4>
+
+
             <paper-card class="rate">
                 <div class="card-content">
                     <img src="src/Images/adidas.jpg" class="adv-image" />
+                    <div class="rate-name">From Adidas</div>
                     <div class="rate-header">Buy these cool Adidas Dragon shoes for 89 euros or 2500 Bubbies.</div>
-                    <div class="rate-name">Adidas</div>
-                </div>
-                <div class="card-actions">
-                    <paper-button class="small" on-tap="gotoAdv1"><iron-icon icon="icons:toll"></iron-icon> 10</paper-button>
+                    <div class="card-actions">
+                        <paper-button class="btn-han" raised on-tap="gotoAdv1">Watch and earn 10 Bs</paper-button>
+                    </div>
                 </div>
             </paper-card>
+
+
+
 
         </template>
     </template>
