@@ -1,0 +1,104 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/neon-animation/web-animations.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu-light.html">
+
+<dom-module id="onboarding-merchant">
+    <!-- Defines the element's style and local DOM -->
+    <template>
+        <style>
+            :host {
+                display: block;
+
+                padding: 16px;
+            }
+
+            paper-button {
+                margin-top: 25px;
+                margin-left: 75px;
+                background-color: var(--accent-color);
+                color: white;
+                font-weight: 500;
+                font-family: Verdana;
+            }
+
+            paper-checkbox.styled {
+                font-style: italic;
+                --paper-checkbox-label-color: darkblue;
+                font-size: 12px;
+            }
+
+            paper-dropdown-menu {
+                width: 200px;
+                margin-right: 20px;
+            }
+
+        </style>
+        <form>
+        <p>
+            <paper-input label="Company Name" value="{{companyName}}"></paper-input>
+        </p>
+
+        <p>
+            <paper-input label="Address" value="{{address}}"></paper-input>
+        </p>
+
+        <p>
+            <paper-input label="City" value="{{city}}"></paper-input>
+        </p>
+
+        <p>
+            <paper-input label="email" value="{{email}}">
+                <iron-icon icon="mail" slot="prefix"></iron-icon>
+            </paper-input>
+        </p>
+
+        <p>
+            <paper-input label="password" value="{{password}}">
+                <iron-icon icon="lock" slot="prefix"></iron-icon>
+            </paper-input>
+        </p>
+
+        <p>
+            <paper-input label="password" value="{{password2}}">
+                <iron-icon icon="lock" slot="prefix"></iron-icon>
+            </paper-input>
+        </p>
+
+
+        <p>
+            <paper-dropdown-menu label="Dinosaurs">
+                <paper-listbox slot="dropdown-content" selected="1">
+                    <paper-item>allosaurus</paper-item>
+                    <paper-item>brontosaurus</paper-item>
+                    <paper-item>carcharodontosaurus</paper-item>
+                    <paper-item>diplodocus</paper-item>
+                </paper-listbox>
+            </paper-dropdown-menu>
+        </p>
+
+        <p>
+            <paper-button>Join!</paper-button>
+        </p>
+        </form>
+    </template>
+    <script>
+        // Your new element extends the Polymer.Element base class
+        class OnboardingMerchant extends Polymer.Element {
+            static get is() { return 'onboarding-merchant'; }
+
+            onboard() {
+                this.dispatchEvent(new CustomEvent('onboarded', {bubbles: true, composed: true}));
+            }
+        }
+        //Now, register your new custom element so the browser can use it
+        customElements.define(OnboardingMerchant.is, OnboardingMerchant);
+    </script>
+</dom-module>

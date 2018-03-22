@@ -9,7 +9,7 @@
 <link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
-<link rel="import" href="./disclaimer-bedrijf.html">
+<link rel="import" href="./onboarding-merchant.html">
 <link rel="import" href="./start-merchant.html">
 <link rel="import" href="../app-theme.html">
 
@@ -66,8 +66,8 @@
                 <template is="dom-if" if="{{showStart}}">
                     <start-merchant in-bubble="{{inBubble}}" bubble-account="{{bubbleAccount}}"></start-merchant>
                 </template>
-                <template is="dom-if" if="{{showDisclaimer}}">
-                    <disclaimer-bedrijf></disclaimer-bedrijf>
+                <template is="dom-if" if="{{showOnboarding}}">
+                    <onboarding-merchant></onboarding-merchant>
                 </template>
                 <template is="dom-if" if="{{showAdvertentie}}">
                     <advertentie-bedrijf bubble-account="{{bubbleAccount}}"></advertentie-bedrijf>
@@ -106,9 +106,9 @@
                         type: Boolean,
                         value: false
                     },
-                    showDisclaimer: {
+                    showOnboarding: {
                         type: Boolean,
-                        value: false
+                        value: true
                     },
                     showAdvertentie: {
                         type: Boolean,
