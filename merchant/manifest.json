@@ -1,0 +1,15 @@
+{
+  "name": "ing-bubble-merchant-app",
+  "short_name": "ing-bubble-merchant-app",
+  "description": "Creating money with bubbles",
+  "start_url": "/merchant",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "start-icon.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ]
+}
+
