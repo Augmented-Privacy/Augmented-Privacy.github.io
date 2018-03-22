@@ -2,6 +2,7 @@
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 
 <dom-module id="join-bubbles-merchant">
     <!-- Defines the element's style and local DOM -->
@@ -103,36 +104,33 @@
 
         </style>
 
+        <iron-ajax
+                auto
+                url="http://bdc09f88.ngrok.io/bubbles/keywords/BABY_ARTIKELEN"
+                handle-as="json"
+                on-response="handleResponse"
+                debounce-duration="300"></iron-ajax>
+
+
         <paper-card>
             <div class="card-content">
 
                 <p class="text-bubble-blue">Top Rated Bubbles for you</p>
 
-                <paper-card class="opvallend-blue">
-                    <div class="card-content">
-                       <b>Young Parents</b>
-                        <div class="smaller">25.000 members</div>
-                        <div class="smaller">20% click rate</div>
-                        <div class="smaller">5,5% conversion rate</div>
-                        <paper-button class="paper-button-join-a" raised on-tap="joinParents">Join</paper-button>
-                        <div class="smaller">8 bubbies per ad per member</div>
-                        <div class="tojoin">To join: 25.000 Bs</div>
-                    </div>
-                </paper-card>
-                <P></P>
-                <paper-card class="opvallend-blue">
-                    <div class="card-content">
-                        <b>Grandparents, not retired</b>
-                        <div class="smaller">37.000 members</div>
-                        <div class="smaller">10% click rate</div>
-                       <div class="smaller">1,5% conversion rate</div>
-                        <paper-button class="paper-button-join-a" raised>Join</paper-button>
-                        <div class="smaller">3 bubbies per ad per member</div>
-                        <div class="tojoin">To join: 10.000 Bs</div>
-                    </div>
-                </paper-card>
-
-
+                <template is="dom-repeat" items="{{allBubbles}}">
+                    <P></P>
+                    <paper-card class="opvallend-blue">
+                        <div class="card-content">
+                            <b>Young parents {{item.id}}</b>
+                            <div class="smaller">{{item.noCustomers}} members</div>
+                            <div class="smaller">{{item.clickRate}}% click rate</div>
+                            <div class="smaller">{{item.conversionRate}}% conversion rate</div>
+                            <paper-button class="paper-button-join-a" raised on-tap="joinParents">Join</paper-button>
+                            <div class="smaller">{{item.bubbsPerMonth}} bubbies per ad per member</div>
+                            <div class="tojoin">To join: {{item.joinPrice}} Bs</div>
+                        </div>
+                    </paper-card>
+                </template>
             </div>
         </paper-card>
 
@@ -142,12 +140,36 @@
         class JoinBubblesMerchant extends Polymer.Element {
             static get is() { return 'join-bubbles-merchant'; }
 
+
+            static get properties() {
+                return {
+                    allBubbles: {
+                        type: Array,
+                        value: []
+                    }
+                };
+            }
+
             onboarding() {
                 this.dispatchEvent(new CustomEvent('onboarding', {bubbles: true, composed: true}));
             }
 
             joinParents() {
                 this.dispatchEvent(new CustomEvent('joinParents', {bubbles: true, composed: true}));
+            }
+
+            handleResponse(data) {
+                this.allBubbles = [];
+                data.detail.response.forEach((item) => {
+                    this.allBubbles.push({
+                        id: item.id,
+                        noCustomers: item.noCustomers,
+                        clickRate: Math.ceil(item.importance.BABY_ARTIKELEN/5*100),
+                        conversionRate: Math.ceil(item.importance.BABY_ARTIKELEN/5*10),
+                        bubbsPerMonth: Math.ceil(item.importance.BABY_ARTIKELEN/5*10)*10,
+                        joinPrice: Math.ceil(item.importance.BABY_ARTIKELEN/5*100)*300
+                    })
+                });
             }
         }
         //Now, register your new custom element so the browser can use it
