@@ -41,8 +41,29 @@
                 font-size: 14px;
             }
 
+            iron-icon {
+                margin-right: 5px;
+            }
+
+            .transaction {
+                background-color: var(--default-primary-color);
+                color: #fff;
+            }
+
+            .opvallend {
+                background-color: var(--default-primary-color);
+                color: white;
+            }
+
             .clear {
                 clear: both;
+            }
+
+            paper-card {
+                width: 100%;
+                padding: 0%;
+                font-family: Verdana;
+                color: var(--accent-color);
             }
         </style>
 
@@ -52,16 +73,22 @@
                     Order your Bubbies
                 </p>
                 <p>
-
-
-                    <paper-input always-float-label label="Euro to bubbies" on-change="calcBubbies">
-                        <iron-icon icon="icons:euro-symbol" slot="prefix"></iron-icon>
+                    Current exchange rate: <br>
+                    <iron-icon  icon="icons:toll"></iron-icon> 1 / <iron-icon icon="icons:euro-symbol"></iron-icon> 0.20
+                </p>
+                <p>
+                    <paper-input always-float-label label="Bubble transaction" on-change="calcBubbies" type="number">
+                            <iron-icon  icon="icons:toll" slot="prefix"></iron-icon>
                     </paper-input>
                 </p>
                 <p>
-                    Bubbies amount: {{bubbiesAmount}}
-                </p>
 
+                </p>
+                <paper-card class="opvallend">
+                    <div class="card-content">
+                        <iron-icon icon="icons:euro-symbol"></iron-icon> {{bubbiesAmount}}
+                    </div>
+                </paper-card>
                 <p>
                     <paper-button class="paper-button-buy" raised on-tap="payNow">Pay</paper-button>
                     <paper-button class="paper-button-cancel" raised on-tap="payCancel">Cancel</paper-button>
@@ -90,7 +117,7 @@
             }
 
             calcBubbies(e) {
-                this.bubbiesAmount = Math.ceil(e.target.value/4+250);
+                this.bubbiesAmount = Math.ceil(e.target.value/4);
             }
 
             payNow() {
