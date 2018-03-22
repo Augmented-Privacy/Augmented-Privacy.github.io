@@ -68,8 +68,8 @@
                 <paper-checkbox class="styled">Pay with Euro's, your current balance is 735,90 Euro</paper-checkbox>
 
                 <br><br>
-                <paper-button class="paper-button-buy" raised>Pay</paper-button>
-                <paper-button class="paper-button-cancel" raised>Cancel</paper-button>
+                <paper-button class="paper-button-buy" raised on-tap="payNow">Pay</paper-button>
+                <paper-button class="paper-button-cancel" raised on-tap="payCancel">Cancel</paper-button>
             </div>
         </paper-card>
 
@@ -78,6 +78,14 @@
         // Your new element extends the Polymer.Element base class
         class BetalenKlant extends Polymer.Element {
             static get is() { return 'betalen-klant'; }
+
+            payNow() {
+                this.dispatchEvent(new CustomEvent('payNow', {bubbles: true, composed: true}));
+            }
+
+            payCancel() {
+                this.dispatchEvent(new CustomEvent('payCancel', {bubbles: true, composed: true}));
+            }
         }
         //Now, register your new custom element so the browser can use it
         customElements.define(BetalenKlant.is, BetalenKlant);

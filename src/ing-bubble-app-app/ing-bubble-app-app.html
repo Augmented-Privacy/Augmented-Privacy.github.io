@@ -156,11 +156,35 @@
                 this.addEventListener('disclaimer', this._setDisclaimer);
                 this.addEventListener('showAdv1', this._showAdv1);
                 this.addEventListener('advBack', this._advBack);
+                this.addEventListener('buyNow', this._buyNow);
+                this.addEventListener('payNow', this._payNow);
+                this.addEventListener('payCancel', this._payCancel);
+                this.addEventListener('closeThanks', this._closeThanks);
                 super.ready();
             }
 
             _bubbleChange() {
                 this.showBubbles = this.inBubble;
+            }
+
+            _closeThanks() {
+                this.showBedankt = false;
+                this.showStart = true;
+            }
+
+            _payCancel() {
+                this.showStart = true;
+                this.showBetalen = false;
+            }
+
+            _payNow() {
+                this.showBedankt = true;
+                this.showBetalen = false;
+            }
+
+            _buyNow() {
+                this.showBetalen = true;
+                this.showAdvertentie = false;
             }
 
             _advBack() {

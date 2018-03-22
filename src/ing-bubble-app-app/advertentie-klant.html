@@ -47,7 +47,7 @@
             <div class="card-content">
                 <div>Buy these cool Adidas Dragon shoes for 89 euros or 2500 Bubbles.</div>
                 <p class="text-blue">Your Loyalty bonus is 250 Bubbles!</p>
-                <paper-button class="paper-button-buy" raised>Buy Now!</paper-button>
+                <paper-button class="paper-button-buy" raised on-tap="buyNow">Buy Now!</paper-button>
                 <paper-button class="paper-button-cancel" on-tap="advBack" raised>No Thanks</paper-button>
             </div>
         </paper-card>
@@ -60,6 +60,10 @@
 
             advBack() {
                 this.dispatchEvent(new CustomEvent('advBack', {bubbles: true, composed: true}));
+            }
+
+            buyNow() {
+                this.dispatchEvent(new CustomEvent('buyNow', {bubbles: true, composed: true}));
             }
         }
         //Now, register your new custom element so the browser can use it
