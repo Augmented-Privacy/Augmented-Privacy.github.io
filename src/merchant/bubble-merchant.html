@@ -20,7 +20,7 @@
                 color: var(--accent-color);
             }
             .text-bubble-blue {
-                color: dodgerblue;
+                color: var(--default-primary-color);
                 font-weight: bold;
                 margin-top: 25px;
                 /*font-style: italic;*/
@@ -31,10 +31,21 @@
                 margin-top: 25px;
                 /*font-style: italic;*/
             }
-            paper-button {
-                margin-top: 25px;
-                margin-left: 60px;
+            .blue {
+                color: darkblue;
+            }
+            .paper-button-buy-bubbles {
+                margin-top: 0px;
+                margin-left: 0px;
                 background-color: var(--accent-color);
+                color: white;
+                font-weight: 500;
+                font-family: Verdana;
+            }
+            .paper-button-join-bubbles {
+                margin-top: 0px;
+                margin-left: 8px;
+                background-color: darkblue;
                 color: white;
                 font-weight: 500;
                 font-family: Verdana;
@@ -68,7 +79,7 @@
                 font-size: 80%;
             }
             .opvallend {
-                background-color: dodgerblue;
+                background-color: var(--default-primary-color);
                 color: white;
             }
             .opvallend-blue {
@@ -83,8 +94,10 @@
                 <p>You currently have no ING accounts.</p>
 
                 <paper-button class="paper-button-open" raised>Open Account</paper-button>
+                <div style="margin-top: 30px"></div>
+                <hr>
 
-                <p class="text-bubble-blue">Bubble account</p>
+                <p class="text-bubble-blue">My Bubbies account</p>
                 <paper-card class="opvallend">
                     <div class="card-content">
                         <b>Laura's Babyshop</b>
@@ -96,23 +109,32 @@
                 </paper-card>
 
                 <p class="text-blue">My Bubbles</p>
-                <paper-card class="opvallend-blue">
-                    <div class="card-content">
-                        <b>Young Parents</b>
-                        <div class="smaller">25.000 members</div>
-                        <div class="smaller">7,5% conversion rate</div>
-                        <div class="smaller">15 bubbles per ad per member</div>
-                    </div>
-                </paper-card>
-                <P></P>
-                <paper-card class="opvallend-blue">
-                    <div class="card-content">
-                        <b>Grandparents, not retired</b>
-                        <div class="smaller">37.000 members</div>
-                        <div class="smaller">2,5% conversion rate</div>
-                        <div class="smaller">6 bubbles per ad per member</div>
-                    </div>
-                </paper-card>
+                <p class="blue">You have not joined any Bubbles yet. Check out the available Bubbles and see
+                                what your opportunities there are for your business.</p>
+
+                <div class="card-actions">
+                    <paper-button class="paper-button-buy-bubbles" raised on-tap="buyBubbles">Acquire Bubbies</paper-button>
+                    <paper-button class="paper-button-join-bubbles" raised on-tap="joinBubbles">Join Bubbles</paper-button>
+                </div>
+
+
+                <!--<paper-card class="opvallend-blue">-->
+                    <!--<div class="card-content">-->
+                        <!--<b>Young Parents</b>-->
+                        <!--<div class="smaller">25.000 members</div>-->
+                        <!--<div class="smaller">7,5% conversion rate</div>-->
+                        <!--<div class="smaller">15 bubbles per ad per member</div>-->
+                    <!--</div>-->
+                <!--</paper-card>-->
+                <!--<P></P>-->
+                <!--<paper-card class="opvallend-blue">-->
+                    <!--<div class="card-content">-->
+                        <!--<b>Grandparents, not retired</b>-->
+                        <!--<div class="smaller">37.000 members</div>-->
+                        <!--<div class="smaller">2,5% conversion rate</div>-->
+                        <!--<div class="smaller">6 bubbles per ad per member</div>-->
+                    <!--</div>-->
+                <!--</paper-card>-->
 
 
             </div>

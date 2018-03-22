@@ -21,8 +21,8 @@
             }
 
             paper-button {
-                margin-top: 25px;
-                margin-left: 75px;
+                margin-top: 10px;
+                margin-left: 135px;
                 background-color: var(--accent-color);
                 color: white;
                 font-weight: 500;
@@ -39,6 +39,10 @@
                 width: 200px;
                 margin-right: 20px;
             }
+            .tandc {
+                text-decoration: underline;
+            }
+
 
         </style>
         <form>
@@ -89,8 +93,10 @@
             </paper-input>
         </p>
 
+            <paper-checkbox class="styled">I have read and I agree to the <span class="tandc">terms & conditions</span>.</paper-checkbox>
+
         <p>
-            <paper-button raised on-tap="onboarded">Join my Bubble</paper-button>
+            <paper-button raised on-tap="onboarded">Join</paper-button>
         </p>
         </form>
     </template>
