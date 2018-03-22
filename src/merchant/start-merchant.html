@@ -1,0 +1,73 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+<dom-module id="start-merchant">
+    <!-- Defines the element's style and local DOM -->
+    <template>
+        <style>
+            :host {
+                display: block;
+
+                padding: 16px;
+            }
+
+            paper-card {
+                width: 100%;
+                padding: 0%;
+                font-family: Verdana;
+                color: var(--accent-color);
+            }
+            .text-blue {
+                color: darkblue;
+                font-style: italic;
+            }
+            paper-button {
+                margin-top: 25px;
+                margin-left: 60px;
+                background-color: var(--accent-color);
+                color: white;
+                font-weight: 500;
+                font-family: Verdana;
+            }
+
+            paper-checkbox.styled {
+                font-style: italic;
+                --paper-checkbox-label-color: darkblue;
+                font-size: 12px;
+            }
+
+            .tandc {
+                text-decoration: underline;
+            }
+
+
+        </style>
+
+        <paper-card>
+            <div class="card-content">
+                <p>Good that you are here! You are only one step away from becoming a Bubbler.</p>
+                <p>As a Bubbler you can choose Bubbles of retail clients were the conversion rate is optimal
+                   for your business. You choose how many Bubbles you want to join and when
+                    and how many advertisments you offer to a Bubble.</p>
+                <p class="text-blue">An advertisment is offered to all
+                   retail customers in the Bubble but you only pay when the advertisment is looked at.</p>
+                <paper-button raised on-tap="disclaimer">Become a Bubbler</paper-button>
+            </div>
+        </paper-card>
+
+    </template>
+    <script>
+        // Your new element extends the Polymer.Element base class
+        class StartMerchant extends Polymer.Element {
+            static get is() { return 'start-merchant'; }
+
+            disclaimer() {
+                this.dispatchEvent(new CustomEvent('disclaimer', {bubbles: true, composed: true}));
+            }
+        }
+        //Now, register your new custom element so the browser can use it
+        customElements.define(StartMerchant.is, StartMerchant);
+    </script>
+</dom-module>

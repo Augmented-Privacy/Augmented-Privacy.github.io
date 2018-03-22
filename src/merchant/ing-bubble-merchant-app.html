@@ -10,7 +10,7 @@
 <link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="./disclaimer-bedrijf.html">
-<link rel="import" href="./start-bedrijf.html">
+<link rel="import" href="./start-merchant.html">
 <link rel="import" href="../app-theme.html">
 
 <dom-module id="ing-bubble-merchant-app">
@@ -64,7 +64,7 @@
 
             <div id="app-content">
                 <template is="dom-if" if="{{showStart}}">
-                    <start-bedrijf in-bubble="{{inBubble}}" bubble-account="{{bubbleAccount}}"></start-bedrijf>
+                    <start-merchant in-bubble="{{inBubble}}" bubble-account="{{bubbleAccount}}"></start-merchant>
                 </template>
                 <template is="dom-if" if="{{showDisclaimer}}">
                     <disclaimer-bedrijf></disclaimer-bedrijf>
