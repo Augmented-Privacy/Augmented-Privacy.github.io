@@ -1,0 +1,107 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+
+<dom-module id="bubble-transaction">
+    <!-- Defines the element's style and local DOM -->
+    <template>
+        <style>
+            :host {
+                display: block;
+
+                padding: 16px;
+            }
+
+            paper-card {
+                width: 100%;
+                padding: 0%;
+                font-family: Verdana;
+                color: var(--accent-color);
+            }
+            .paper-button-buy {;
+                background-color: var(--accent-color);
+                color: white;
+                font-weight: 500;
+                font-family: Verdana;
+                float: left;
+            }
+            .paper-button-cancel {
+                background-color: white;
+                color: var(--accent-color);
+                font-weight: 500;
+                font-family: Verdana;
+                float: right;
+            }
+
+            paper-checkbox.styled {
+                font-style: italic;
+                --paper-checkbox-label-color: darkblue;
+                font-size: 14px;
+            }
+
+            .clear {
+                clear: both;
+            }
+        </style>
+
+        <paper-card>
+            <div class="card-content">
+                <p>
+                    Order your Bubbies
+                </p>
+                <p>
+
+
+                    <paper-input always-float-label label="Euro to bubbies" on-change="calcBubbies">
+                        <iron-icon icon="icons:euro-symbol" slot="prefix"></iron-icon>
+                    </paper-input>
+                </p>
+                <p>
+                    Bubbies amount: {{bubbiesAmount}}
+                </p>
+
+                <p>
+                    <paper-button class="paper-button-buy" raised on-tap="payNow">Pay</paper-button>
+                    <paper-button class="paper-button-cancel" raised on-tap="payCancel">Cancel</paper-button>
+                </p>
+                <p class="clear"></p>
+            </div>
+        </paper-card>
+
+    </template>
+    <script>
+        // Your new element extends the Polymer.Element base class
+        class BubbleTransaction extends Polymer.Element {
+            static get is() { return 'bubble-transaction'; }
+
+            static get properties() {
+                return {
+                    bubbleAccount: {
+                        type: Number,
+                        value: 0
+                    },
+                    bubbiesAmount: {
+                        type: Number,
+                        value: 0
+                    }
+                };
+            }
+
+            calcBubbies(e) {
+                this.bubbiesAmount = Math.ceil(e.target.value/4+250);
+            }
+
+            payNow() {
+                this.dispatchEvent(new CustomEvent('payNow', {bubbles: true, composed: true}));
+            }
+
+            payCancel() {
+                this.dispatchEvent(new CustomEvent('payCancel', {bubbles: true, composed: true}));
+            }
+        }
+        //Now, register your new custom element so the browser can use it
+        customElements.define(BubbleTransaction.is, BubbleTransaction);
+    </script>
+</dom-module>

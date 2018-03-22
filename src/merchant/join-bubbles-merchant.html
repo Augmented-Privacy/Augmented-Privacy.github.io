@@ -114,7 +114,7 @@
                         <div class="smaller">25.000 members</div>
                         <div class="smaller">20% click rate</div>
                         <div class="smaller">5,5% conversion rate</div>
-                        <paper-button class="paper-button-join-a" raised>Join</paper-button>
+                        <paper-button class="paper-button-join-a" raised on-tap="joinParents">Join</paper-button>
                         <div class="smaller">8 bubbies per ad per member</div>
                         <div class="tojoin">To join: 25.000 Bs</div>
                     </div>
@@ -144,6 +144,10 @@
 
             onboarding() {
                 this.dispatchEvent(new CustomEvent('onboarding', {bubbles: true, composed: true}));
+            }
+
+            joinParents() {
+                this.dispatchEvent(new CustomEvent('joinParents', {bubbles: true, composed: true}));
             }
         }
         //Now, register your new custom element so the browser can use it

@@ -87,6 +87,16 @@
                 color: white;
             }
 
+            .paper-button-join-a {
+                margin-top: 13px;
+                margin-right: -5px;
+                float: right;
+                background-color: white;
+                color: var(--accent-color);
+                font-weight: 500;
+                font-family: Verdana;
+            }
+
         </style>
 
         <paper-card>
@@ -109,8 +119,28 @@
                 </paper-card>
 
                 <p class="text-blue">My Bubbles</p>
-                <p class="blue">You have not joined any Bubbles yet. Check out the available Bubbles and see
-                                what your opportunities there are for your business.</p>
+
+                <template is="dom-if" if="{{!joinedParents}}">
+                    <p class="blue">You have not joined any Bubbles yet. Check out the available Bubbles and see
+                        what your opportunities there are for your business.</p>
+
+                </template>
+
+                <template is="dom-if" if="{{joinedParents}}">
+                    <p></p>
+                    <paper-card class="opvallend-blue">
+                        <div class="card-content">
+                            <b>Young Parents</b>
+                            <div class="smaller">25.000 members</div>
+                            <div class="smaller">20% click rate</div>
+                            <div class="smaller">5,5% conversion rate</div>
+                            <paper-button class="paper-button-join-a" raised on-tap="createAdv">Create Add</paper-button>
+                            <div class="smaller">8 bubbies per ad per member</div>
+                            <p></p>
+                        </div>
+                    </paper-card>
+                    <p></p>
+                </template>
 
                 <div class="card-actions">
                     <paper-button class="paper-button-buy-bubbles" raised on-tap="buyBubbles">Acquire Bubbies</paper-button>
@@ -126,8 +156,29 @@
         class BubbleMerchant extends Polymer.Element {
             static get is() { return 'bubble-merchant'; }
 
+            static get properties() {
+                return {
+                    bubbleAccount: {
+                        type: Number,
+                        value: 0
+                    },
+                    joinedParents: {
+                        type: Boolean,
+                        value: false
+                    }
+                };
+            }
+
             joinBubbles() {
                 this.dispatchEvent(new CustomEvent('joinBubbles', {bubbles: true, composed: true}));
+            }
+
+            createAdv() {
+                this.dispatchEvent(new CustomEvent('createAdv', {bubbles: true, composed: true}));
+            }
+
+            buyBubbles() {
+                this.dispatchEvent(new CustomEvent('buyBubbles', {bubbles: true, composed: true}));
             }
         }
         //Now, register your new custom element so the browser can use it

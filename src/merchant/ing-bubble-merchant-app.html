@@ -12,6 +12,7 @@
 <link rel="import" href="./start-merchant.html">
 <link rel="import" href="./onboarding-merchant.html">
 <link rel="import" href="./bubble-merchant.html">
+<link rel="import" href="./bubble-transaction.html">
 <link rel="import" href="./join-bubbles-merchant.html">
 <link rel="import" href="../app-theme.html">
 
@@ -72,7 +73,7 @@
                     <onboarding-merchant></onboarding-merchant>
                 </template>
                 <template is="dom-if" if="{{showBubble}}">
-                    <bubble-merchant></bubble-merchant>
+                    <bubble-merchant joined-parents="{{joinedParents}}"></bubble-merchant>
                 </template>
                 <template is="dom-if" if="{{showJoinBubbles}}">
                     <join-bubbles-merchant></join-bubbles-merchant>
@@ -80,11 +81,14 @@
                 <template is="dom-if" if="{{showAdvertentie}}">
                     <advertentie-bedrijf bubble-account="{{bubbleAccount}}"></advertentie-bedrijf>
                 </template>
-                <template is="dom-if" if="{{showBetalen}}">
-                    <betalen-bedrijf bubble-account="{{bubbleAccount}}"></betalen-bedrijf>
+                <template is="dom-if" if="{{showTransaction}}">
+                    <bubble-transaction bubble-account="{{bubbleAccount}}"></bubble-transaction>
                 </template>
                 <template is="dom-if" if="{{showBedankt}}">
                     <bedankt-bedrijf></bedankt-bedrijf>
+                </template>
+                <template is="dom-if" if="{{joinedParent}}">
+
                 </template>
             </div>
         </div>
@@ -130,7 +134,7 @@
                         type: Boolean,
                         value: false
                     },
-                    showBetalen: {
+                    showTransaction: {
                         type: Boolean,
                         value: false
                     },
@@ -145,6 +149,10 @@
                     bubbleAccount: {
                         type: Number,
                         value: 0
+                    },
+                    joinedParents: {
+                        type: Boolean,
+                        value: false
                     }
                 };
             }
@@ -161,15 +169,23 @@
                 this.addEventListener('joinBubbles', this._joinBubbles);
                 this.addEventListener('showAdv1', this._showAdv1);
                 this.addEventListener('advBack', this._advBack);
-                this.addEventListener('buyNow', this._buyNow);
+                this.addEventListener('buyBubbles', this._buyBubbles);
                 this.addEventListener('payNow', this._payNow);
                 this.addEventListener('payCancel', this._payCancel);
                 this.addEventListener('closeThanks', this._closeThanks);
+                this.addEventListener('joinParents', this._joinParents);
                 super.ready();
             }
 
             _bubbleChange() {
                 this.showBubbles = this.inBubble;
+            }
+
+            _joinParents() {
+              this.joinedParents = true;
+              this.showJoinBubbles = false;
+              this.showBubble = true;
+
             }
 
             _closeThanks() {
@@ -179,18 +195,18 @@
 
             _payCancel() {
                 this.showStart = true;
-                this.showBetalen = false;
+                this.showTransaction = false;
             }
 
             _payNow() {
                 this.bubbleAccount-=750;
-                this.showBedankt = true;
-                this.showBetalen = false;
+                this.showBubble = true;
+                this.showTransaction = false;
             }
 
-            _buyNow() {
-                this.showBetalen = true;
-                this.showAdvertentie = false;
+            _buyBubbles() {
+                this.showTransaction = true;
+                this.showBubble = false;
             }
 
             _advBack() {
