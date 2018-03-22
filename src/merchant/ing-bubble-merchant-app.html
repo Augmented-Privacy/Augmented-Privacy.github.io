@@ -9,8 +9,9 @@
 <link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
-<link rel="import" href="./onboarding-merchant.html">
 <link rel="import" href="./start-merchant.html">
+<link rel="import" href="./onboarding-merchant.html">
+<link rel="import" href="./bubble-merchant.html">
 <link rel="import" href="../app-theme.html">
 
 <dom-module id="ing-bubble-merchant-app">
@@ -69,6 +70,9 @@
                 <template is="dom-if" if="{{showOnboarding}}">
                     <onboarding-merchant></onboarding-merchant>
                 </template>
+                <template is="dom-if" if="{{showBubble}}">
+                    <bubble-merchant></bubble-merchant>
+                </template>
                 <template is="dom-if" if="{{showAdvertentie}}">
                     <advertentie-bedrijf bubble-account="{{bubbleAccount}}"></advertentie-bedrijf>
                 </template>
@@ -106,9 +110,13 @@
                         type: Boolean,
                         value: false
                     },
+                    showBubble: {
+                        type: Boolean,
+                        value: false
+                    },
                     showOnboarding: {
                         type: Boolean,
-                        value: true
+                        value: false
                     },
                     showAdvertentie: {
                         type: Boolean,
@@ -140,8 +148,9 @@
             }
 
             ready() {
+                this.addEventListener('onboarding', this._setOnboarding);
+                this.addEventListener('onboarded', this._setOnboarded);
                 this.addEventListener('joinBubble', this._joinBubble);
-                this.addEventListener('disclaimer', this._setDisclaimer);
                 this.addEventListener('showAdv1', this._showAdv1);
                 this.addEventListener('advBack', this._advBack);
                 this.addEventListener('buyNow', this._buyNow);
@@ -187,9 +196,14 @@
                 this.bubbleAccount+=10;
             }
 
-            _setDisclaimer() {
-                this.showDisclaimer = false;
-                this.showStart = true;
+            _setOnboarding() {
+                this.showOnboarding = true;
+                this.showStart = false;
+            }
+
+            _setOnboarded() {
+                this.showBubble = true;
+                this.showOnboarding = false;
             }
 
             _joinBubble() {

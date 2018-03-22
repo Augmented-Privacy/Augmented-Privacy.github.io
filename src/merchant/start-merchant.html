@@ -52,8 +52,12 @@
                    for your business. You choose how many Bubbles you want to join and when
                     and how many advertisments you offer to a Bubble.</p>
                 <p class="text-blue">An advertisment is offered to all
-                   retail customers in the Bubble but you only pay when the advertisment is looked at.</p>
-                <paper-button raised on-tap="disclaimer">Become a Bubbler</paper-button>
+                   retail customers in the Bubble but you only pay when the advertisment is viewed and
+                    when your product is bought by the customer.</p>
+                <div class="card-actions">
+                    <paper-button raised on-tap="onboarding">Become a Bubbler</paper-button>
+                </div>
+
             </div>
         </paper-card>
 
@@ -63,8 +67,8 @@
         class StartMerchant extends Polymer.Element {
             static get is() { return 'start-merchant'; }
 
-            disclaimer() {
-                this.dispatchEvent(new CustomEvent('disclaimer', {bubbles: true, composed: true}));
+            onboarding() {
+                this.dispatchEvent(new CustomEvent('onboarding', {bubbles: true, composed: true}));
             }
         }
         //Now, register your new custom element so the browser can use it
