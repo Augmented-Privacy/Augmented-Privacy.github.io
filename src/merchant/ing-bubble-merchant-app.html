@@ -1,0 +1,210 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/app-layout/app-layout.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="./disclaimer-bedrijf.html">
+<link rel="import" href="./start-bedrijf.html">
+<link rel="import" href="../app-theme.html">
+
+<dom-module id="ing-bubble-merchant-app">
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+
+            h1 {
+                color: var(--default-primary-color);
+            }
+
+            #main {
+                margin: 0;
+                font-family: 'Roboto', 'Noto', sans-serif;
+            }
+
+            app-header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                background-color: var(--default-primary-color);
+                color: #fff;
+            }
+
+            app-header paper-icon-button {
+                --paper-icon-button-ink-color: white;
+            }
+
+            #app-content {
+                padding-top: 45px;
+            }
+
+        </style>
+
+        <div id="main">
+            <app-header condenses reveals effects="waterfall">
+                <app-toolbar>
+                    <paper-icon-button icon="menu" on-tap="toggleMenu"></paper-icon-button>
+                    <div main-title>ING Bubbles Merchant</div>
+                    <paper-icon-button icon="delete"></paper-icon-button>
+                    <paper-icon-button icon="search"></paper-icon-button>
+                    <paper-icon-button icon="close"></paper-icon-button>
+                    <paper-progress value="10" indeterminate bottom-item></paper-progress>
+                </app-toolbar>
+            </app-header>
+
+            <app-drawer id="drawer" swipe-open></app-drawer>
+
+            <div id="app-content">
+                <template is="dom-if" if="{{showStart}}">
+                    <start-bedrijf in-bubble="{{inBubble}}" bubble-account="{{bubbleAccount}}"></start-bedrijf>
+                </template>
+                <template is="dom-if" if="{{showDisclaimer}}">
+                    <disclaimer-bedrijf></disclaimer-bedrijf>
+                </template>
+                <template is="dom-if" if="{{showAdvertentie}}">
+                    <advertentie-bedrijf bubble-account="{{bubbleAccount}}"></advertentie-bedrijf>
+                </template>
+                <template is="dom-if" if="{{showBetalen}}">
+                    <betalen-bedrijf bubble-account="{{bubbleAccount}}"></betalen-bedrijf>
+                </template>
+                <template is="dom-if" if="{{showBedankt}}">
+                    <bedankt-bedrijf></bedankt-bedrijf>
+                </template>
+            </div>
+        </div>
+
+        <template is="dom-if" if="{{showBubbles}}">
+            <bubble-animatie></bubble-animatie>
+        </template>
+    </template>
+
+    <script>
+        /**
+         * @customElement
+         * @polymer
+         */
+        class IngBubbleMerchantApp extends Polymer.Element {
+            static get is() {
+                return 'ing-bubble-merchant-app';
+            }
+
+            static get properties() {
+                return {
+                    showStart: {
+                        type: Boolean,
+                        value: true
+                    },
+                    inBubble: {
+                        type: Boolean,
+                        value: false
+                    },
+                    showDisclaimer: {
+                        type: Boolean,
+                        value: false
+                    },
+                    showAdvertentie: {
+                        type: Boolean,
+                        value: false
+                    },
+                    showBetalen: {
+                        type: Boolean,
+                        value: false
+                    },
+                    showBedankt: {
+                        type: Boolean,
+                        value: false
+                    },
+                    showBubbles: {
+                        type: Boolean,
+                        value: false
+                    },
+                    bubbleAccount: {
+                        type: Number,
+                        value: 0
+                    }
+                };
+            }
+
+            static get observers() {
+                return [
+                    '_bubbleChange(inBubble)'
+                ]
+            }
+
+            ready() {
+                this.addEventListener('joinBubble', this._joinBubble);
+                this.addEventListener('disclaimer', this._setDisclaimer);
+                this.addEventListener('showAdv1', this._showAdv1);
+                this.addEventListener('advBack', this._advBack);
+                this.addEventListener('buyNow', this._buyNow);
+                this.addEventListener('payNow', this._payNow);
+                this.addEventListener('payCancel', this._payCancel);
+                this.addEventListener('closeThanks', this._closeThanks);
+                super.ready();
+            }
+
+            _bubbleChange() {
+                this.showBubbles = this.inBubble;
+            }
+
+            _closeThanks() {
+                this.showBedankt = false;
+                this.showStart = true;
+            }
+
+            _payCancel() {
+                this.showStart = true;
+                this.showBetalen = false;
+            }
+
+            _payNow() {
+                this.bubbleAccount-=750;
+                this.showBedankt = true;
+                this.showBetalen = false;
+            }
+
+            _buyNow() {
+                this.showBetalen = true;
+                this.showAdvertentie = false;
+            }
+
+            _advBack() {
+                this.showStart = true;
+                this.showAdvertentie = false;
+            }
+
+            _showAdv1() {
+                this.showAdvertentie = true;
+                this.showStart = false;
+                this.bubbleAccount+=10;
+            }
+
+            _setDisclaimer() {
+                this.showDisclaimer = false;
+                this.showStart = true;
+            }
+
+            _joinBubble() {
+                this.inBubble = true;
+                this.showDisclaimer = true;
+                this.showStart = false;
+                this.bubbleAccount=20000;
+            }
+
+            toggleMenu() {
+                this.inBubble = !this.inBubble;
+                //this.$.drawer.toggle();
+            }
+        }
+
+        window.customElements.define(IngBubbleMerchantApp.is, IngBubbleMerchantApp);
+    </script>
+</dom-module>
