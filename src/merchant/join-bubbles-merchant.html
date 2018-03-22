@@ -3,6 +3,7 @@
 <link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-jsonp-library/iron-jsonp-library.html">
 
 <dom-module id="join-bubbles-merchant">
     <!-- Defines the element's style and local DOM -->
@@ -106,7 +107,7 @@
 
         <iron-ajax
                 auto
-                url="http://bdc09f88.ngrok.io/bubbles/keywords/BABY_ARTIKELEN"
+                url="https://bdc09f88.ngrok.io/bubbles/keywords/BABY_ARTIKELEN"
                 handle-as="json"
                 on-response="handleResponse"
                 debounce-duration="300"></iron-ajax>
@@ -116,6 +117,13 @@
             <div class="card-content">
 
                 <p class="text-bubble-blue">Top Rated Bubbles for you</p>
+
+                <iron-jsonp-library
+                        library-url="https://apis.google.com/js/plusone.js?onload=%%callback%%"
+                        notify-event="api-load"
+                        library-loaded="{{loaded}}"
+                        library-error-message="{{errorMessage}}"></iron-jsonp-library>
+
 
                 <template is="dom-repeat" items="{{allBubbles}}">
                     <P></P>
@@ -150,12 +158,21 @@
                 };
             }
 
+            ready() {
+                this.addEventListener('api-load', this.parseJsonP);
+                super.ready();
+            }
+
             onboarding() {
                 this.dispatchEvent(new CustomEvent('onboarding', {bubbles: true, composed: true}));
             }
 
             joinParents() {
                 this.dispatchEvent(new CustomEvent('joinParents', {bubbles: true, composed: true}));
+            }
+
+            parseJsonP(data) {
+                console.log(data.detail.response);
             }
 
             handleResponse(data) {
