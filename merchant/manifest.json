@@ -6,7 +6,7 @@
   "display": "standalone",
   "icons": [
     {
-      "src": "start-icon.png",
+      "src": "shop-icon.png",
       "sizes": "96x96",
       "type": "image/png"
     }
