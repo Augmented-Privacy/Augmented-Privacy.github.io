@@ -80,16 +80,16 @@
 
             <div id="app-content">
                 <template is="dom-if" if="{{showStart}}">
-                    <start-klant in-bubble="{{inBubble}}"></start-klant>
+                    <start-klant in-bubble="{{inBubble}}" bubble-account="{{bubbleAccount}}"></start-klant>
                 </template>
                 <template is="dom-if" if="{{showDisclaimer}}">
                     <disclaimer-klant></disclaimer-klant>
                 </template>
                 <template is="dom-if" if="{{showAdvertentie}}">
-                    <advertentie-klant></advertentie-klant>
+                    <advertentie-klant bubble-account="{{bubbleAccount}}"></advertentie-klant>
                 </template>
                 <template is="dom-if" if="{{showBetalen}}">
-                    <betalen-klant></betalen-klant>
+                    <betalen-klant bubble-account="{{bubbleAccount}}"></betalen-klant>
                 </template>
                 <template is="dom-if" if="{{showBedankt}}">
                     <bedankt-klant></bedankt-klant>
@@ -141,6 +141,10 @@
                     showBubbles: {
                         type: Boolean,
                         value: false
+                    },
+                    bubbleAccount: {
+                        type: Number,
+                        value: 0
                     }
                 };
             }
@@ -178,6 +182,7 @@
             }
 
             _payNow() {
+                this.bubbleAccount-=750;
                 this.showBedankt = true;
                 this.showBetalen = false;
             }
@@ -195,6 +200,7 @@
             _showAdv1() {
                 this.showAdvertentie = true;
                 this.showStart = false;
+                this.bubbleAccount+=10;
             }
 
             _setDisclaimer() {
@@ -206,6 +212,7 @@
                 this.inBubble = true;
                 this.showDisclaimer = true;
                 this.showStart = false;
+                this.bubbleAccount=1000;
             }
 
             toggleMenu() {

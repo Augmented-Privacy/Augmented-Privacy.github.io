@@ -3,5 +3,13 @@
   "short_name": "ing-bubble-app",
   "description": "Awsomeniss",
   "start_url": "/",
-  "display": "standalone"
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "start-icon.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ]
 }
+

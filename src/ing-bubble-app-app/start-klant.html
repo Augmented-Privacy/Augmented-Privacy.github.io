@@ -98,7 +98,7 @@
             <paper-card class="opvallend">
                 <div class="card-content">
                     Hr. A de Vries
-                    <h3 class="right"><iron-icon icon="icons:toll"></iron-icon> 1000</h3>
+                    <h3 class="right"><iron-icon icon="icons:toll"></iron-icon> {{bubbleAccount}}</h3>
                     <div class="smaller">
                         UASDHYYB
                     </div>
@@ -129,6 +129,10 @@
                     inBubble: {
                         type: Boolean,
                         value: false
+                    },
+                    bubbleAccount: {
+                        type: Number,
+                        value: 0
                     }
                 };
             }
