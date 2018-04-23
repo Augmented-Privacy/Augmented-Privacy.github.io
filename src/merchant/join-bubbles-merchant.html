@@ -140,6 +140,35 @@
                         </div>
                     </paper-card>
                 </template>
+                
+                <template is="dom-if" if="showStaticBubbles">
+                    <paper-card class="opvallend-blue">
+    -                    <div class="card-content">
+    -                       <b>Young Parents</b>
+    -                        <div class="smaller">25.000 members</div>
+    -                        <div class="smaller">20% click rate</div>
+    -                        <div class="smaller">5,5% conversion rate</div>
+    -                        <paper-button class="paper-button-join-a" raised on-tap="joinParents">Join</paper-button>
+    -                        <div class="smaller">8 bubbies per ad per member</div>
+    -                        <div class="tojoin">To join: 25.000 Bs</div>
+    -                    </div>
+    -                </paper-card>
+    -                <P></P>
+    -                <paper-card class="opvallend-blue">
+    -                    <div class="card-content">
+    -                        <b>Grandparents, not retired</b>
+    -                        <div class="smaller">37.000 members</div>
+    -                        <div class="smaller">10% click rate</div>
+    -                       <div class="smaller">1,5% conversion rate</div>
+    -                        <paper-button class="paper-button-join-a" raised>Join</paper-button>
+    -                        <div class="smaller">3 bubbies per ad per member</div>
+    -                        <div class="tojoin">To join: 10.000 Bs</div>
+    -                    </div>
+    -                </paper-card>
+-
+                </template>
+                
+                
             </div>
         </paper-card>
 
@@ -155,6 +184,10 @@
                     allBubbles: {
                         type: Array,
                         value: []
+                    },
+                    showStaticBubbles: {
+                        type: Boolean,
+                        value: false
                     }
                 };
             }
@@ -191,7 +224,7 @@
             }
             
             handleError() {
-                console.log('error?');   
+                console.log('Backend error');   
             }
         }
         //Now, register your new custom element so the browser can use it
