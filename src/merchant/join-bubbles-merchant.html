@@ -110,6 +110,7 @@
                 url="https://9a2fda76.ngrok.io/bubbles/keywords/BABY_ARTIKELEN"
                 handle-as="json"
                 on-response="handleResponse"
+                on-error="handleError"   
                 debounce-duration="300"></iron-ajax>
 
 
@@ -187,6 +188,10 @@
                         joinPrice: Math.ceil(item.importance.BABY_ARTIKELEN/5*100)*300
                     })
                 });
+            }
+            
+            handleError() {
+                console.log('error?');   
             }
         }
         //Now, register your new custom element so the browser can use it
